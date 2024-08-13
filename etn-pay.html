@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>$ETN Pay</title>
+    <link href="https://fonts.googleapis.com/css2?family=Nebulica&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Nebulica', sans-serif;
+            background: linear-gradient(135deg, #0b0c10, #1f2833);
+            color: #ffffff;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .logo {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .container {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 30px;
+            border-radius: 10px;
+            width: 90%;
+            max-width: 400px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+            text-align: center;
+        }
+        h1 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: #66fcf1;
+        }
+        label {
+            display: block;
+            margin-bottom: 10px;
+            font-size: 18px;
+            text-align: left;
+        }
+        select, input {
+            width: 100%;
+            padding: 10px;
+            border-radius: 8px;
+            border: none;
+            margin-bottom: 20px;
+            font-size: 16px;
+            background-color: #c5c6c7;
+            color: #333;
+        }
+        #order-box {
+            display: none;
+        }
+        .pay-now-btn {
+            display: block;
+            width: 100%;
+            text-align: center;
+            background-color: #45a29e;
+            color: white;
+            padding: 15px;
+            border-radius: 8px;
+            font-size: 18px;
+            cursor: pointer;
+            text-decoration: none;
+            margin-top: 20px;
+        }
+        .instructions {
+            margin-top: 20px;
+            font-style: italic;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="logo">
+    <img src="your-logo.png" alt="$ETN Logo" width="150">
+</div>
+
+<div class="container">
+    <h1>$ETN Pay</h1>
+    
+    <label for="item">Item:</label>
+    <select id="item">
+        <option value="TikTok Advertising-10000000000000">TikTok Advertising - 1000 ETN</option>
+        <option value="Telegram Ad-50000000000000">Telegram Ad - 5000 ETN</option>
+        <option value="Web Development Course-4000000000000">Web Development Course - 4000 ETN</option>
+    </select>
+
+    <label for="order" id="order-label" style="display: none;">Order Number:</label>
+    <input type="text" id="order-box" placeholder="Enter your order number">
+
+    <a href="#" class="pay-now-btn" id="pay-now">Pay Now</a>
+
+    <div class="instructions">
+        Please screenshot this invoice after the transaction is completed and send the screenshot to payment@etn.ethio-tech.com
+    </div>
+</div>
+
+<script>
+    function generateInvoiceNumber() {
+        const now = new Date();
+        const year = now.getFullYear().toString().slice(-2);
+        const month = (now.getMonth() + 1).toString().padStart(2, '0');
+        const day = now.getDate().toString().padStart(2, '0');
+        const randomNum = Math.floor(Math.random() * 900) + 100;
+        return `etnpi#${year}${month}${day}-${randomNum}`;
+    }
+
+    function updateURL() {
+        const itemValue = document.getElementById('item').value;
+        const invoice = generateInvoiceNumber();
+        const item = itemValue.split('-')[0];
+        const itemAmount = parseInt(itemValue.split('-')[1]);
+        const order = document.getElementById('order-box').value || "0000";
+
+        const textString = `${invoice}-${item}-${order}`;
+        const encodedText = encodeURIComponent(textString);
+
+        const baseURL = `ton://transfer/UQBImMCDcWNfBmHFm1EenLLO5KHxvE9_IlJZtczzKmC5cC9x?jetton=EQAz_XrD0hA4cqlprWkpS7TIAhCG4CknAfob1VQm-2mBf5Vl`;
+        const fullURL = `${baseURL}&amount=${itemAmount}&fee-amount=1000000000&forward-amount=1000000000&text=${encodedText}`;
+        document.getElementById('pay-now').setAttribute('href', fullURL);
+    }
+
+    document.getElementById('item').addEventListener('change', function() {
+        if (this.value.startsWith("Web Development Course")) {
+            document.getElementById('order-label').style.display = 'block';
+            document.getElementById('order-box').style.display = 'block';
+        } else {
+            document.getElementById('order-label').style.display = 'none';
+            document.getElementById('order-box').style.display = 'none';
+        }
+        updateURL();
+    });
+
+    document.getElementById('order-box').addEventListener('input', updateURL);
+
+    updateURL();
+</script>
+
+</body>
+</html>
