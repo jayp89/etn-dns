@@ -1,0 +1,128 @@
+@font-face {
+    font-family: 'Nebulica';
+    src: url('fonts/Nebulica-Regular.woff2') format('woff2'),
+         url('fonts/Nebulica-Regular.woff') format('woff'),
+         url('fonts/Nebulica-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+body {
+    margin: 0;
+    font-family: 'Nebulica', sans-serif;
+    color: #333333;
+    background: linear-gradient(135deg, #F2C94C 0%, #F2994A 100%);
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+header {
+    background-color: transparent;
+    color: #133A2A;
+    padding: 40px 0;
+    text-align: center;
+}
+
+header .logo {
+    width: 350px;
+    margin-bottom: 20px;
+}
+
+header .domain-box {
+    display: inline-block;
+    background-color: #ffffff;
+    padding: 15px 30px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+header .domain-box p {
+    margin: 0;
+    font-size: 1.5em;
+    color: #333;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 2.5em;
+    font-weight: bold;
+    color: #333;
+}
+
+header h2 {
+    margin: 10px 0 0 0;
+    font-size: 1.8em;
+    font-weight: normal;
+    color: #333;
+}
+
+main {
+    padding: 60px 0;
+    flex: 1;
+}
+
+main .introduction, main .explore {
+    margin-bottom: 40px;
+    background-color: #133A2A;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+main .introduction p, main .explore p {
+    font-size: 1.3em;
+    line-height: 1.6;
+    color: #ffffff;
+}
+
+main .explore h3 {
+    font-size: 2em;
+    margin-bottom: 15px;
+    color: #C19A00;
+}
+
+main a {
+    color: #C19A00;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+main a:hover {
+    text-decoration: underline;
+}
+
+footer {
+    background-color: #333;
+    color: #FFFFFF;
+    padding: 30px 0;
+    text-align: center;
+}
+
+footer .footer-links a {
+    color: #F2C94C;
+    margin: 0 15px;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+footer .footer-links a:hover {
+    text-decoration: underline;
+}
+
+footer p {
+    margin: 10px 0;
+}
+
+footer .powered-by {
+    font-size: 0.9em;
+    margin-top: 10px;
+    color: #F2C94C;
+}
